@@ -1,0 +1,21 @@
+version: "3.9"
+services:
+  item-search:
+    build:
+      context: .
+      dockerfile: item_search/Dockerfile
+    image: item-search:latest
+    environment:
+      - TESSERACT_CMD=/usr/bin/tesseract
+      - OCR_LANGUAGE=rus+eng
+      # - POPPLER_PATH=/usr/bin
+    volumes:
+      - ./item_search/app/src/catalogues:/app/item_search/app/src/catalogues:ro
+    ports:
+      - "8000:8000"
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 2g
+
