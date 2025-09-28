@@ -32,7 +32,7 @@ def test_parse_invalid_chars():
 
 def test_parse_no_extension():
     r = _post_file("/parse/file", "file", b"some text")
-    assert r.status_code == 200
+    assert r.status_code == 400
 
 
 def test_parse_wrong_extension():

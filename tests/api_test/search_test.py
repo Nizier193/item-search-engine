@@ -8,7 +8,7 @@ def _ensure_warmup():
     r = requests.get(f"{BASE}/readyz?catalog_id=smoke", timeout=10)
     ready = r.status_code == 200 and r.json().get("ready") is True
     if not ready:
-        payload = {"catalog_id": "smoke", "references": ["catalog.jsonl"], "limit_items": 5000}
+        payload = {"catalog_id": "smoke", "references": ["test_catalogue.jsonl"], "limit_items": 5000}
         requests.post(f"{BASE}/warmup", json=payload, timeout=120).raise_for_status()
 
 
